@@ -1,10 +1,10 @@
 <?php
 
 class Database{
-    private $host      = "192.168.1.9";
+    private $host      = "127.0.0.1";//192.168.1.9
     private $user      = "root";
-    private $pass      = "root";
-    private $dbname    = "itslerning";
+    private $pass      = "map";//root
+    private $dbname    = "infoscreen";//itslearning
  
     private $dbh;
     private $error;
@@ -28,12 +28,12 @@ class Database{
     }
 	
 	public function query($query){
-    $this->stmt = $this->dbh->prepare($query);
-	}
+    	$this->stmt = $this->dbh->prepare($query);
+	}	
 
 	public function bind($param, $value, $type = null){
-    if (is_null($type)) {
-        switch (true) {
+    	if (is_null($type)) {
+        	switch (true) {
             case is_int($value):
                 $type = PDO::PARAM_INT;
                 break;
@@ -45,33 +45,29 @@ class Database{
                 break;
             default:
                 $type = PDO::PARAM_STR;
-        }
-    }
-    $this->stmt->bindValue($param, $value, $type);
-	}	
+        	}
+    	}
+    	$this->stmt->bindValue($param, $value, $type);
+	}
+		
 	public function execute(){
-    return $this->stmt->execute();
-}
+    	return $this->stmt->execute();
+	}
 
-public function resultset(){
-    $this->execute();
-    return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
-}
+	public function resultset(){
+    	$this->execute();
+    	return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
+	}
 
-public function single(){
-    $this->execute();
-    return $this->stmt->fetch(PDO::FETCH_ASSOC);
-}
+	public function single(){
+	    $this->execute();
+	    return $this->stmt->fetch(PDO::FETCH_ASSOC);
+	}
 
-public function rowCount(){
-    return $this->stmt->rowCount();
-}
-public function lastInsertId(){
-    return $this->dbh->lastInsertId();
-}
-
-
-
-
-	
+	public function rowCount(){
+	    return $this->stmt->rowCount();
+	}
+	public function lastInsertId(){
+	    return $this->dbh->lastInsertId();
+	}	
 }
