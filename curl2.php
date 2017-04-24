@@ -1,5 +1,5 @@
 <?php
-//Itslearning::login("danieande","password" );
+//Itslearning::login("username","password" );
 error_reporting(E_ALL);
 include_once('simple_html_dom.php');
 
