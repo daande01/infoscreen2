@@ -5,7 +5,7 @@ include_once('simple_html_dom.php');
 
 //Itslearning::getAnslag("","",'/ContentArea/ContentArea.aspx?LocationID=9088&LocationType=1' );
 
-Itslearning::getNews("","" );
+Itslearning::getNews("username","password" );
 
 
 class Itslearning {
