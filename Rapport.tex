@@ -1,0 +1,166 @@
+% Created 2017-05-23 ti 11:11
+\documentclass[11pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage{wasysym}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\tolerance=1000
+\author{Lukas Skystedt}
+\date{}
+\title{Teknikprgrammets Informationssida}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 25.2.1 (Org mode 8.2.10)}}
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+
+\section{Problemformulering}
+\label{sec-1}
+Teknikprogrammet behöver ett sätt att sammanställa viktiga datum för
+inlämnningar och prov.
+
+\section{Analys}
+\label{sec-2}
+En webbsida som i huvudsak kan visas på en tv-skärm i skolan, men även
+på persondatorer, skall utvecklas. Den skall visa en kalender med
+viktiga datum för teknikprogrammets klasser. Lärare skall kunna föra
+in händelser i kalendern via Kunskapsförbundets
+itslearning-sida.
+
+Dagens lunch skall även visas.
+
+\subsection{Kravspecifikation}
+\label{sec-2-1}
+\subsubsection{Avändargränssnitt}
+\label{sec-2-1-1}
+\begin{itemize}
+\item Inmatningen skall ske via Kunskapförbundets ItsLearning-sida.
+\item Teknikprogrammets lärare skall kunna mata in händelser, vilken klass
+händelsen gäller samt datum och tid.
+\item Det skall finnas information för lärare om hur sidan används.
+\item Det skall finnas information för elever som vill fortsätta utveckla sidan.
+\end{itemize}
+
+\subsubsection{Mjukvarugränssnitt}
+\label{sec-2-1-2}
+\begin{itemize}
+\item Kalenderdatan skall finnas lagrad i en databas.
+\item Rå kalenderdata skall kunna hämtas ur databasen med ett mjukvarugränssnitt.
+\end{itemize}
+
+\section{Design/implementation}
+\label{sec-3}
+Projektet består att ett flertal komponenter som samverkar.  
+\begin{itemize}
+\item Den del av sidan som hanterar  http-frågor befinner sig i index.php
+\item Kalendern hanteras av eventcalendar.php. Till denna finns det även tillhörande CSS och JavaScript.
+\item Informationssidorna för lärare och elever finns vardera PHP-filer.
+\end{itemize}
+
+\subsection{Kalendern}
+\label{sec-3-1}
+Lärare matar in händelserna i den inbyggda händelse-funktionen i
+itslearning. Alla händelser i alla kurser som ett användarkonto är
+medlem i hämtas sedan via itslearnings kalenderfunktion. Detta sker i
+ical-format\footnote{\url{https://icalendar.org/}}.
+
+För att tolka innehållet i \emph{.ical}-filer används en modul av
+MartinThoma\footnote{\url{https://github.com/MartinThoma/ics-parser}}. Med hjälp av modulen extraheras start- och sluttid
+för händelser samt texten de innehåller och vilken kurs de
+tillhör. Denna information infogas i databasen.
+
+\subsubsection{Databas}
+\label{sec-3-1-1}
+En MySQL-databas används för att mellanlagra den data som
+hämtas från itslearning. Databasens innehåll är tillgängligt
+genom mjukvarugränssnittet.
+
+Databasen innhåller följande tabeller:
+
+\begin{enumerate}
+\item classes
+\label{sec-3-1-1-1}
+\begin{center}
+\begin{tabular}{lll}
+Namn & Typ & Kommentar\\
+\hline
+name & varchar & Klassnamnet, primärnyckel\\
+color & char & Färgen, standardvärde \emph{7a26a8}\\
+\end{tabular}
+\end{center}
+
+\item events
+\label{sec-3-1-1-2}
+\begin{center}
+\begin{tabular}{lll}
+Namn & Typ & Kommentar\\
+\hline
+id & varchar & Primärnyckel\\
+start\_time & datetime & Händelsens starttid\\
+end\_time & datetime & Händelsens slutttid\\
+course & varchar & Kursnamnet\\
+text & varchar & Händelsebeskrivningen\\
+\end{tabular}
+\end{center}
+
+\item event\_classes
+\label{sec-3-1-1-3}
+\begin{center}
+\begin{tabular}{lll}
+Namn & Typ & Kommentar\\
+\hline
+name & varchar & Klassnamnet, primärnyckel\\
+color & char & Färgen, standardvärde \emph{7a26a8}\\
+\end{tabular}
+\end{center}
+
+\emph{event\_classes}-tabellen används för relationen mellan \emph{classes} och
+\emph{events}. En händelse kan ha många klasser och en klass kan ha många händelser; de har en många-till-många-relation.
+\end{enumerate}
+
+\subsubsection{Inmatningsformat}
+\label{sec-3-1-2}
+Den inmatade texten i händelsebeskrivningen genomsöks efter de
+klassnamn som finns i databasen, utan hänsyn till skriftläge
+(versaler/gemener). Även kursnamnet söks igenom på detta sätt.
+
+Ett exempel på en händelsebeskrivning:
+\begin{verbatim}
+Prov differentialekvationer för TE3a och TE3b.
+Avsnitt 5 ingår inte.
+\end{verbatim}
+
+Om inga klassnamn hittas används en standardfärg i kalendern och
+händelsen dyker ändast upp under "Hela Teknikprogrammet"..
+
+\subsubsection{Tid}
+\label{sec-3-1-3}
+Under tolkningsprocessen konverteras tid/datum-formatet i
+\emph{.ics}-filen\footnote{\url{http://www.kanzaki.com/docs/ical/dateTime.html}} till ett format som kan tolkas av
+MySQL\footnote{\url{https://dev.mysql.com/doc/refman/5.7/en/date-and-time-types.html}}. Omvandlingen översätter även datum och tid till Svensk
+tidszon.
+
+\section{Testning}
+\label{sec-4}
+\section{Resultat}
+\label{sec-5}
+
+\section{Diskussion}
+\label{sec-6}
+% Emacs 25.2.1 (Org mode 8.2.10)
+\end{document}

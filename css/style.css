@@ -1,0 +1,90 @@
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.icon-block {
+    padding: 0 14px;
+}
+.icon-block .material-icons {
+    font-size: inherit;
+}
+
+nav {
+    flex: 0 0 auto;
+    flex-basis: 54px;
+}
+
+#header-container {
+    width: 100%;
+}
+
+#show-menu i {
+    margin-left: 40px;
+    font-size: 34px;
+}
+
+#bsg-logo {
+    width: 64;
+    height: 64;
+}
+
+.breadcrumb:last-child{
+    color: rgba(255,255,255,0.7);
+}
+
+#cal-switch{
+    display: inline-block;
+    
+}
+#cal-switch i{
+    font-size: 36px;
+}
+
+
+#calendar-wrapper{
+    width: calc(100% - 20px);
+    /* height: calc(100% - 438px); */
+    flex: 1 1 auto;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0;
+}
+
+#event-calendar{
+    /* height: 600px; */
+}
+
+#info-wrapper {
+    flex: 0 0 auto;
+    order: 3;
+    height: 54px;
+    margin-left: 10px;
+    bottom: 0;
+}
+
+#info-wrapper ul {
+    margin: 0;
+}
+#info-wrapper li{
+    vertical-align: top;
+    margin-right: 20px;
+    height: 54px;
+    display: inline-block;
+}
+
+#info-wrapper p {
+    margin: 0;
+    font-size: 18px;
+}
+
+#lunch img{
+    width: 40px;
+    height: 40px;
+}
+#lunch p {
+    font-size: 18px;
+    display: inline-block;
+}

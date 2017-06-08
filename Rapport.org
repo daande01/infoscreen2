@@ -1,0 +1,171 @@
+#+TITLE: Teknikprgrammets Informationssida
+#+AUTHOR: Lukas Skystedt
+#+EMAIL: lukas.skystedt@gmail.com
+#+DATE: 
+#+OPTIONS: ^:{}
+* Problemformulering
+Teknikprogrammet behöver ett sätt att sammanställa viktiga datum för
+inlämnningar och prov.
+
+* Metod
+En agil utvecklingsmetod skall användas. Inga planeringsdokument skall
+produceras. Utvecklingen skall ske iterativt och kravspecifikationen
+kommer att förändras under arbetets gång.
+* Analys
+En webbsida som i huvudsak kan visas på en tv-skärm i skolan, men även
+på persondatorer, skall utvecklas. Den skall visa en kalender med
+viktiga datum för teknikprogrammets klasser. Lärare skall kunna föra
+in händelser i kalendern via Kunskapsförbundets
+itslearning-sida.
+
+Dagens lunch skall även visas.
+
+** Kravspecifikation
+*** Avändargränssnitt
+- Inmatningen skall ske via Kunskapförbundets ItsLearning-sida.
+- Teknikprogrammets lärare skall kunna mata in händelser, vilken klass
+  händelsen gäller samt datum och tid.
+- Det skall finnas information för lärare om hur sidan används.
+- Information om hur sidan är konstruerad för elever som vill
+  fortsätta utveckla sidan skall finnas.
+
+*** Mjukvarugränssnitt
+- Kalenderdatan skall finnas lagrad i en databas.
+- Rå kalenderdata skall kunna hämtas ur databasen med ett mjukvarugränssnitt.
+  
+* Design/implementation
+** Mockup
+[[./mockup.gif]]
+** Arkitektur
+Projektet består att ett flertal komponenter som samverkar.  
+- Den del av sidan som hanterar  http-frågor befinner sig i index.php
+- Kalendern hanteras av eventcalendar.php. Till denna finns det även tillhörande CSS och JavaScript.
+- Informationssidorna för lärare och elever finns vardera PHP-filer.  
+
+Nedan följer en schematisk bild över systemet.
+[[./Arkitektur.png]]
+** Kalendern
+Lärare matar in händelserna i den inbyggda händelse-funktionen i
+itslearning. Alla händelser i alla kurser som ett användarkonto är
+medlem i hämtas sedan via itslearnings kalenderfunktion. Detta sker i
+ical-format[fn:1].
+
+För att tolka innehållet i /.ical/-filer används en modul av
+MartinThoma[fn:2]. Med hjälp av modulen extraheras start- och sluttid
+för händelser samt texten de innehåller och vilken kurs de
+tillhör. Denna information infogas i databasen.
+
+*** Databas
+En MySQL-databas används för att mellanlagra den data som
+hämtas från itslearning. Databasens innehåll är tillgängligt
+genom mjukvarugränssnittet.
+
+Databasen innhåller följande tabeller:
+
+**** classes
+| Namn  | Typ     | Kommentar                      |
+|-------+---------+--------------------------------|
+| name  | varchar | Klassnamnet, primärnyckel      |
+| color | char    | Färgen, standardvärde /7a26a8/ |
+
+**** events
+| Namn       | Typ      | Kommentar             |
+|------------+----------+-----------------------|
+| id         | varchar  | Primärnyckel          |
+| start_time | datetime | Händelsens starttid   |
+| end_time   | datetime | Händelsens slutttid   |
+| course     | varchar  | Kursnamnet            |
+| text       | varchar  | Händelsebeskrivningen |
+
+**** event_classes
+| Namn  | Typ     | Kommentar                      |
+|-------+---------+--------------------------------|
+| name  | varchar | Klassnamnet, primärnyckel      |
+| color | char    | Färgen, standardvärde /7a26a8/ |
+
+/event_classes/-tabellen används för relationen mellan /classes/ och
+/events/. En händelse kan ha många klasser och en klass kan ha många händelser; de har en många-till-många-relation.
+
+*** Inmatningsformat
+Den inmatade texten i händelsebeskrivningen genomsöks efter de
+klassnamn som finns i databasen, utan hänsyn till skriftläge
+(versaler/gemener). Även kursnamnet söks igenom på detta sätt.
+
+Ett exempel på en händelsebeskrivning:
+#+BEGIN_EXAMPLE
+Prov differentialekvationer för TE3a och TE3b.
+Avsnitt 5 ingår inte.
+#+END_EXAMPLE
+
+Om inga klassnamn hittas används en standardfärg i kalendern och
+händelsen dyker ändast upp under "Hela Teknikprogrammet"..
+
+*** Tid
+Under tolkningsprocessen konverteras tid/datum-formatet i
+/.ics/-filen[fn:3] till ett format som kan tolkas av
+MySQL[fn:4]. Omvandlingen översätter även datum och tid till Svensk
+tidszon.
+
+* Testning
+Några subjektivt utvalda intressanta tester som har utförts:
+- XSS från itslearnig  
+Testet bekräftade att sidan är känslig för XSS.
+- Flera klasser i en händelse  
+Händelsen visades korrekt med ränder.
+- Olika skärmstorlekar
+Sidan är i huvudsak responsiv för stora skärmar.
+- Olika webbläsare
+Firefox gav en annan höjd på sidan i förhållande till
+fönsterstorleken.
+- Kommatecken i en händelsebeskrivning.
+Om ett kommatecken förekommer i en händelsebeskrivning kommer det att
+föregås av ett snedstreck (\). Detta är troligtvis en brist i det
+bibliotek som används för att tolka /.ical/-filen. Problemet kan lösas
+genom att behandla texten med reguljära uttryck.
+* Resultat
+Nedan följer några bilder på sidan.
+** 4 vecko
+[[./kalender-img.PNG]]
+** 20 veckor
+[[./kalender2-img.PNG]]
+** Meny
+[[./meny-img.PNG]]
+** Information för lärare
+[[./lärarinfo-img.PNG]]
+* Diskussion
+** Säkerhet
+*** XSS
+Flera komponenter är känsliga för XSS (Cross Site
+Scripting[fn:5]). Information inmatad av lärare på itslearnig kan vara
+skadlig. Viss HTML (och i förlängningen JavaScript) som matas in
+kommer att tolkas på klientsidan då ingen tvättning sker bortsett från
+det som automatiskt sker via .ical-formatet (till exempel undanflys
+semikolon). Liknande säkerhetsrikser finns för andra inmatningsvägar
+från itslearning som kursnamn.
+*** SQL-injektion
+Risken för SQL-injektion är låg då endast information inmatad av
+lärare infogas i databasen. Vidare används PDO (PHP Data
+Objects[fn:6]) med variabelbindning för att minimera risken.
+** Övrigt
+Ingen inloggningsfunktion finns. Således krävs till exempel inte
+lösenordskryptering, sessionshantering och rättighetsfördelning. Den
+data som alla användare har möjlighet att skicka till servern är sker
+via HTTP GET/POST. De värden som skickas med, används endast för att
+anpassa innehållet till användaren och kan således inte skada andra
+användare (via XSS). Det finns en möjlighet att vissa värden skulle kunna orsaka
+ett internt serverfel. Vidare används ett värde för att hämta data ur
+databasen, denna bör tvättas till en numerisk datatyp för att försäkra
+att SQL-injektion inte är möjlig. 
+
+För elever-funktionen är inte färdigimplementerad. Avsikten är att
+visa README-filen. För att tolka /.md/-filen som HTML kan GitHubs API
+användas.
+
+[fn:1] https://icalendar.org/
+[fn:2] https://github.com/MartinThoma/ics-parser
+[fn:3] http://www.kanzaki.com/docs/ical/dateTime.html  
+[fn:4] https://dev.mysql.com/doc/refman/5.7/en/date-and-time-types.html
+[fn:5] [[https://en.wikipedia.org/wiki/Cross-site_scripting]]
+[fn:6] [[http://php.net/manual/en/book.pdo.php]]
+[fn:7] [[http://php.net/manual/en/pdostatement.bindparam.php]]
+

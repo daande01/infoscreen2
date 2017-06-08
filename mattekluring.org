@@ -1,0 +1,30 @@
+* Antalet barn
+Den genomsnittliga åldern i en familj bestående av två föräldrar och deras barn är 20 år. Om vi räknar bort en förälder, som är 40 år, minskar snittet till 15 år. Hur många barn är det i familjen?
+
+Lösning
+Låt T vara familjens totala ålder och b antalet barn.
+
+\frac T {b+2}=20
+\frac {T-40}{b+1}=15
+
+T=20b+40
+b=3
+
+* Omkretsproblemet
+https://www.youtube.com/watch?v=M8DrWjEo3IE
+* Vinklar i triangel
+https://www.youtube.com/watch?v=HQc-54hQ8kw
+* MIT triangelproblem
+https://www.youtube.com/watch?v=cvG77iyFvlU
+* Prioriteringsordning
+6/2(1+2)
+* Gå före i matkön
+20 elever står varja dag i kö till matsalen. En dag säger en elev att varje elev någon gång har stått framför varje annan elev i kön. Vad är det minsta antal dagar eleverna måste ha stått i kö för att detta skall var möjligt?
+* Monty hall
+* Genomsnittliga avståndet mellan två punkter i en kvadrat/cirkel
+* Summan av kanterna i en kvadrat
+http://mathpuzzle.se/squareedge2.jpg
+* Perfekt kvadrat
+* Volym i liggande cylinder
+* Area på ellips med brännpunkt på sinusfunktion
+* Kvadrat med cirkelbågar i

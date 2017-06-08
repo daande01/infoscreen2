@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+<head>
+<title>Teknikprgrammets Informationssida</title>
+<!-- 2017-05-29 må 09:58 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="generator" content="Org-mode">
+<meta name="author" content="Lukas Skystedt">
+
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<style type="text/css">
+/* org mode styles on top of twbs */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    font-size: 18px;
+    margin-bottom: 105px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 101px;
+    background-color: #f5f5f5;
+}
+
+footer > div {
+    padding: 10px;
+}
+
+footer p {
+    margin: 0 0 5px;
+    text-align: center;
+    font-size: 16px;
+}
+
+#table-of-contents {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+blockquote p {
+    font-size: 18px;
+}
+
+pre {
+    font-size: 16px;
+}
+
+.footpara {
+    display: inline-block;
+}
+
+figcaption {
+  font-size: 16px;
+  color: #666;
+  font-style: italic;
+  padding-bottom: 15px;
+}
+
+/* from twbs docs */
+
+.bs-docs-sidebar.affix {
+    position: static;
+}
+@media (min-width: 768px) {
+    .bs-docs-sidebar {
+        padding-left: 20px;
+    }
+}
+
+/* All levels of nav */
+.bs-docs-sidebar .nav > li > a {
+    display: block;
+    padding: 4px 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+}
+.bs-docs-sidebar .nav > li > a:hover,
+.bs-docs-sidebar .nav > li > a:focus {
+    padding-left: 19px;
+    color: #A1283B;
+    text-decoration: none;
+    background-color: transparent;
+    border-left: 1px solid #A1283B;
+}
+.bs-docs-sidebar .nav > .active > a,
+.bs-docs-sidebar .nav > .active:hover > a,
+.bs-docs-sidebar .nav > .active:focus > a {
+    padding-left: 18px;
+    font-weight: bold;
+    color: #A1283B;
+    background-color: transparent;
+    border-left: 2px solid #A1283B;
+}
+
+/* Nav: second level (shown on .active) */
+.bs-docs-sidebar .nav .nav {
+    display: none; /* Hide by default, but at >768px, show it */
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 30px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav > li > a:focus {
+    padding-left: 29px;
+}
+.bs-docs-sidebar .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav > .active:focus > a {
+    padding-left: 28px;
+    font-weight: 500;
+}
+
+/* Nav: third level (shown on .active) */
+.bs-docs-sidebar .nav .nav .nav {
+    padding-bottom: 10px;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a {
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 40px;
+    font-size: 12px;
+    font-weight: normal;
+}
+.bs-docs-sidebar .nav .nav .nav > li > a:hover,
+.bs-docs-sidebar .nav .nav .nav > li > a:focus {
+    padding-left: 39px;
+}
+.bs-docs-sidebar .nav .nav .nav > .active > a,
+.bs-docs-sidebar .nav .nav .nav > .active:hover > a,
+.bs-docs-sidebar .nav .nav .nav > .active:focus > a {
+    padding-left: 38px;
+    font-weight: 500;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: 992px) {
+    .bs-docs-sidebar .nav > .active > ul {
+        display: block;
+    }
+    /* Widen the fixed sidebar */
+    .bs-docs-sidebar.affix,
+    .bs-docs-sidebar.affix-bottom {
+        width: 213px;
+    }
+    .bs-docs-sidebar.affix {
+        position: fixed; /* Undo the static from mobile first approach */
+        top: 20px;
+    }
+    .bs-docs-sidebar.affix-bottom {
+        position: absolute; /* Undo the static from mobile first approach */
+    }
+    .bs-docs-sidebar.affix .bs-docs-sidenav,.bs-docs-sidebar.affix-bottom .bs-docs-sidenav {
+        margin-top: 0;
+        margin-bottom: 0
+    }
+}
+@media (min-width: 1200px) {
+    /* Widen the fixed sidebar again */
+    .bs-docs-sidebar.affix-bottom,
+    .bs-docs-sidebar.affix {
+        width: 263px;
+    }
+}
+</style>
+<script type="text/javascript">
+$(function() {
+    'use strict';
+
+    $('.bs-docs-sidebar li').first().addClass('active');
+
+    $(document.body).scrollspy({target: '.bs-docs-sidebar'});
+
+    $('.bs-docs-sidebar').affix();
+});
+</script>
+</head>
+<body>
+<div id="content" class="container">
+<div class="row"><div class="col-md-9"><h1 class="title">Teknikprgrammets Informationssida</h1>
+<div id="outline-container-sec-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Problemformulering</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Teknikprogrammet behöver ett sätt att sammanställa viktiga datum för
+inlämnningar och prov.
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Metod</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+En agil utvecklingsmetod skall användas. Inga planeringsdokument skall
+produceras. Utvecklingen skall ske iterativt och kravspecifikationen
+kommer att förändras under arbetets gång.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Analys</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+En webbsida som i huvudsak kan visas på en tv-skärm i skolan, men även
+på persondatorer, skall utvecklas. Den skall visa en kalender med
+viktiga datum för teknikprogrammets klasser. Lärare skall kunna föra
+in händelser i kalendern via Kunskapsförbundets
+itslearning-sida.
+</p>
+
+<p>
+Dagens lunch skall även visas.
+</p>
+</div>
+
+<div id="outline-container-sec-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Kravspecifikation</h3>
+<div class="outline-text-3" id="text-3-1">
+</div><div id="outline-container-sec-3-1-1" class="outline-4">
+<h4 id="sec-3-1-1"><span class="section-number-4">3.1.1</span> Avändargränssnitt</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<ul class="org-ul">
+<li>Inmatningen skall ske via Kunskapförbundets ItsLearning-sida.
+</li>
+<li>Teknikprogrammets lärare skall kunna mata in händelser, vilken klass
+händelsen gäller samt datum och tid.
+</li>
+<li>Det skall finnas information för lärare om hur sidan används.
+</li>
+<li>Information om hur sidan är konstruerad för elever som vill
+fortsätta utveckla sidan skall finnas.
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-sec-3-1-2" class="outline-4">
+<h4 id="sec-3-1-2"><span class="section-number-4">3.1.2</span> Mjukvarugränssnitt</h4>
+<div class="outline-text-4" id="text-3-1-2">
+<ul class="org-ul">
+<li>Kalenderdatan skall finnas lagrad i en databas.
+</li>
+<li>Rå kalenderdata skall kunna hämtas ur databasen med ett mjukvarugränssnitt.
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Design/implementation</h2>
+<div class="outline-text-2" id="text-4">
+</div><div id="outline-container-sec-4-1" class="outline-3">
+<h3 id="sec-4-1"><span class="section-number-3">4.1</span> Arkitektur</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Projektet består att ett flertal komponenter som samverkar.  
+</p>
+<ul class="org-ul">
+<li>Den del av sidan som hanterar  http-frågor befinner sig i index.php
+</li>
+<li>Kalendern hanteras av eventcalendar.php. Till denna finns det även tillhörande CSS och JavaScript.
+</li>
+<li>Informationssidorna för lärare och elever finns vardera PHP-filer.  
+</li>
+</ul>
+
+<p>
+Nedan följer en schematisk bild över systemet.
+<img src="./Arkitektur.png" class="img-responsive" alt="Arkitektur.png">
+</p>
+</div>
+</div>
+<div id="outline-container-sec-4-2" class="outline-3">
+<h3 id="sec-4-2"><span class="section-number-3">4.2</span> Kalendern</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+Lärare matar in händelserna i den inbyggda händelse-funktionen i
+itslearning. Alla händelser i alla kurser som ett användarkonto är
+medlem i hämtas sedan via itslearnings kalenderfunktion. Detta sker i
+ical-format<sup><a id="fnr.1" name="fnr.1" class="footref" href="#fn.1">1</a></sup>.
+</p>
+
+<p>
+För att tolka innehållet i <i>.ical</i>-filer används en modul av
+MartinThoma<sup><a id="fnr.2" name="fnr.2" class="footref" href="#fn.2">2</a></sup>. Med hjälp av modulen extraheras start- och sluttid
+för händelser samt texten de innehåller och vilken kurs de
+tillhör. Denna information infogas i databasen.
+</p>
+</div>
+
+<div id="outline-container-sec-4-2-1" class="outline-4">
+<h4 id="sec-4-2-1"><span class="section-number-4">4.2.1</span> Databas</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<p>
+En MySQL-databas används för att mellanlagra den data som
+hämtas från itslearning. Databasens innehåll är tillgängligt
+genom mjukvarugränssnittet.
+</p>
+
+<p>
+Databasen innhåller följande tabeller:
+</p>
+</div>
+
+<ol class="org-ol"><li><a id="sec-4-2-1-1" name="sec-4-2-1-1"></a>classes<br ><div class="outline-text-5" id="text-4-2-1-1">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">Namn</th>
+<th scope="col" class="text-left">Typ</th>
+<th scope="col" class="text-left">Kommentar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">name</td>
+<td class="text-left">varchar</td>
+<td class="text-left">Klassnamnet, primärnyckel</td>
+</tr>
+
+<tr>
+<td class="text-left">color</td>
+<td class="text-left">char</td>
+<td class="text-left">Färgen, standardvärde <i>7a26a8</i></td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-4-2-1-2" name="sec-4-2-1-2"></a>events<br ><div class="outline-text-5" id="text-4-2-1-2">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">Namn</th>
+<th scope="col" class="text-left">Typ</th>
+<th scope="col" class="text-left">Kommentar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">id</td>
+<td class="text-left">varchar</td>
+<td class="text-left">Primärnyckel</td>
+</tr>
+
+<tr>
+<td class="text-left">start_time</td>
+<td class="text-left">datetime</td>
+<td class="text-left">Händelsens starttid</td>
+</tr>
+
+<tr>
+<td class="text-left">end_time</td>
+<td class="text-left">datetime</td>
+<td class="text-left">Händelsens slutttid</td>
+</tr>
+
+<tr>
+<td class="text-left">course</td>
+<td class="text-left">varchar</td>
+<td class="text-left">Kursnamnet</td>
+</tr>
+
+<tr>
+<td class="text-left">text</td>
+<td class="text-left">varchar</td>
+<td class="text-left">Händelsebeskrivningen</td>
+</tr>
+</tbody>
+</table>
+</div>
+</li>
+
+<li><a id="sec-4-2-1-3" name="sec-4-2-1-3"></a>event_classes<br ><div class="outline-text-5" id="text-4-2-1-3">
+<table class="table table-striped table-bordered table-hover table-condensed">
+
+
+<colgroup>
+<col  class="left">
+
+<col  class="left">
+
+<col  class="left">
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="text-left">Namn</th>
+<th scope="col" class="text-left">Typ</th>
+<th scope="col" class="text-left">Kommentar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="text-left">name</td>
+<td class="text-left">varchar</td>
+<td class="text-left">Klassnamnet, primärnyckel</td>
+</tr>
+
+<tr>
+<td class="text-left">color</td>
+<td class="text-left">char</td>
+<td class="text-left">Färgen, standardvärde <i>7a26a8</i></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<i>event_classes</i>-tabellen används för relationen mellan <i>classes</i> och
+<i>events</i>. En händelse kan ha många klasser och en klass kan ha många händelser; de har en många-till-många-relation.
+</p>
+</div>
+</li></ol>
+</div>
+
+<div id="outline-container-sec-4-2-2" class="outline-4">
+<h4 id="sec-4-2-2"><span class="section-number-4">4.2.2</span> Inmatningsformat</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<p>
+Den inmatade texten i händelsebeskrivningen genomsöks efter de
+klassnamn som finns i databasen, utan hänsyn till skriftläge
+(versaler/gemener). Även kursnamnet söks igenom på detta sätt.
+</p>
+
+<p>
+Ett exempel på en händelsebeskrivning:
+</p>
+<pre class="example">
+Prov differentialekvationer för TE3a och TE3b.
+Avsnitt 5 ingår inte.
+</pre>
+
+<p>
+Om inga klassnamn hittas används en standardfärg i kalendern och
+händelsen dyker ändast upp under "Hela Teknikprogrammet"..
+</p>
+</div>
+</div>
+
+<div id="outline-container-sec-4-2-3" class="outline-4">
+<h4 id="sec-4-2-3"><span class="section-number-4">4.2.3</span> Tid</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+Under tolkningsprocessen konverteras tid/datum-formatet i
+<i>.ics</i>-filen<sup><a id="fnr.3" name="fnr.3" class="footref" href="#fn.3">3</a></sup> till ett format som kan tolkas av
+MySQL<sup><a id="fnr.4" name="fnr.4" class="footref" href="#fn.4">4</a></sup>. Omvandlingen översätter även datum och tid till Svensk
+tidszon.
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-sec-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Testning</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Några subjektivt utvalda intressanta tester som har utförts:
+</p>
+<ul class="org-ul">
+<li>XSS från itslearnig  
+</li>
+</ul>
+<p>
+Testet bekräftade att sidan är känslig för XSS.
+</p>
+<ul class="org-ul">
+<li>Flera klasser i en händelse  
+</li>
+</ul>
+<p>
+Händelsen visades korrekt med ränder.
+</p>
+<ul class="org-ul">
+<li>Olika skärmstorlekar
+</li>
+</ul>
+<p>
+Sidan är i huvudsak responsiv för stora skärmar.
+</p>
+<ul class="org-ul">
+<li>Olika webbläsare
+</li>
+</ul>
+<p>
+Firefox gav en annan höjd på sidan i förhållande till
+fönsterstorleken.
+</p>
+<ul class="org-ul">
+<li>M
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-sec-6" class="outline-2">
+<h2 id="sec-6"><span class="section-number-2">6</span> Resultat</h2>
+</div>
+
+<div id="outline-container-sec-7" class="outline-2">
+<h2 id="sec-7"><span class="section-number-2">7</span> Diskussion</h2>
+<div class="outline-text-2" id="text-7">
+</div><div id="outline-container-sec-7-1" class="outline-3">
+<h3 id="sec-7-1"><span class="section-number-3">7.1</span> Säkerhet</h3>
+<div class="outline-text-3" id="text-7-1">
+</div><div id="outline-container-sec-7-1-1" class="outline-4">
+<h4 id="sec-7-1-1"><span class="section-number-4">7.1.1</span> XSS</h4>
+<div class="outline-text-4" id="text-7-1-1">
+<p>
+Flera komponenter är känsliga för XSS (Cross Site
+Scripting<sup><a id="fnr.5" name="fnr.5" class="footref" href="#fn.5">5</a></sup>). Information inmatad av lärare på itslearnig kan vara
+skadlig. Viss HTML (och i förlängningen JavaScript) som matas in
+kommer att tolkas på klientsidan då ingen tvättning sker bortsett från
+det som automatiskt sker via .ical-formatet (till exempel undanflys
+semikolon). Liknande säkerhetsrikser finns för andra inmatningsvägar
+från itslearning som kursnamn.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-1-2" class="outline-4">
+<h4 id="sec-7-1-2"><span class="section-number-4">7.1.2</span> SQL-injektion</h4>
+<div class="outline-text-4" id="text-7-1-2">
+<p>
+Risken för SQL-injektion är låg då endast information inmatad av
+lärare infogas i databasen. Vidare används PDO (PHP Data
+Objects<sup><a id="fnr.6" name="fnr.6" class="footref" href="#fn.6">6</a></sup>) med variabelbindning för att minimera risken.
+</p>
+</div>
+</div>
+<div id="outline-container-sec-7-1-3" class="outline-4">
+<h4 id="sec-7-1-3"><span class="section-number-4">7.1.3</span> Övrigt</h4>
+<div class="outline-text-4" id="text-7-1-3">
+<p>
+Ingen inloggningsfunktion finns. Således krävs till exempel inte
+lösenordskryptering, sessionshantering och rättighetsfördelning. Den
+data som alla användare har möjlighet att skicka till servern är sker
+via HTTP GET/POST. De värden som skickas med, används endast för att
+anpassa innehållet till användaren och kan således inte skada andra
+användare (via XSS). Det finns en möjlighet att vissa värden skulle kunna orsaka
+ett internt serverfel. Vidare används ett värde för att hämta data ur
+databasen, denna bör tvättas till en numerisk datatyp för att försäkra
+att SQL-injektion inte är möjlig. 
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="footnotes">
+<h2 class="footnotes">Footnotes: </h2>
+<div id="text-footnotes">
+
+<div class="footdef"><sup><a id="fn.1" name="fn.1" class="footnum" href="#fnr.1">1</a></sup> <p class="footpara">
+<a href="https://icalendar.org/">https://icalendar.org/</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.2" name="fn.2" class="footnum" href="#fnr.2">2</a></sup> <p class="footpara">
+<a href="https://github.com/MartinThoma/ics-parser">https://github.com/MartinThoma/ics-parser</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.3" name="fn.3" class="footnum" href="#fnr.3">3</a></sup> <p class="footpara">
+<a href="http://www.kanzaki.com/docs/ical/dateTime.html">http://www.kanzaki.com/docs/ical/dateTime.html</a>  
+</p></div>
+
+<div class="footdef"><sup><a id="fn.4" name="fn.4" class="footnum" href="#fnr.4">4</a></sup> <p class="footpara">
+<a href="https://dev.mysql.com/doc/refman/5.7/en/date-and-time-types.html">https://dev.mysql.com/doc/refman/5.7/en/date-and-time-types.html</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.5" name="fn.5" class="footnum" href="#fnr.5">5</a></sup> <p class="footpara">
+<a href="https://en.wikipedia.org/wiki/Cross-site_scripting">https://en.wikipedia.org/wiki/Cross-site_scripting</a>
+</p></div>
+
+<div class="footdef"><sup><a id="fn.6" name="fn.6" class="footnum" href="#fnr.6">6</a></sup> <p class="footpara">
+<a href="http://php.net/manual/en/book.pdo.php">http://php.net/manual/en/book.pdo.php</a>
+</p></div>
+
+
+</div>
+</div></div><div class="col-md-3"><nav id="table-of-contents">
+<div id="text-table-of-contents" class="bs-docs-sidebar">
+<ul class="nav">
+<li><a href="#sec-1">1. Problemformulering</a></li>
+<li><a href="#sec-2">2. Metod</a></li>
+<li><a href="#sec-3">3. Analys</a>
+<ul class="nav">
+<li><a href="#sec-3-1">3.1. Kravspecifikation</a></li>
+</ul>
+</li>
+<li><a href="#sec-4">4. Design/implementation</a>
+<ul class="nav">
+<li><a href="#sec-4-1">4.1. Arkitektur</a></li>
+<li><a href="#sec-4-2">4.2. Kalendern</a></li>
+</ul>
+</li>
+<li><a href="#sec-5">5. Testning</a></li>
+<li><a href="#sec-6">6. Resultat</a></li>
+<li><a href="#sec-7">7. Diskussion</a>
+<ul class="nav">
+<li><a href="#sec-7-1">7.1. Säkerhet</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</nav>
+</div></div></div>
+<footer id="postamble" class="">
+<div><p class="author">Author: Lukas Skystedt</p>
+<p class="date">Created: 2017-05-29 må 09:58</p>
+<p class="creator"><a href="http://www.gnu.org/software/emacs/">Emacs</a> 25.2.1 (<a href="http://orgmode.org">Org-mode</a> 8.2.10)</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,50 @@
+Målet med den här webbsidan är att alla teknikprogrammets händelser skall kunna samlas på ett överskådligt sätt utan att lägga till onödigt arbete för lärare och elever. I menyn till vänster finns kalendrar för de olika klasserna samt för hela teknikprogrammet. Som lärare kan du lägga till händelser som prov, studiebesök och andra viktiga saker som elever och lärare behöver känna till. Nedan följer en instruktion om hur du går till väga, utan att lämna itslearning!
+
+* Lägga till händelser
+All interaktion med systemet sker via *itslearning*. Händelser läggs till i den kurs som den ingår i.
+- Navigera till kursens info-panel (startsida).
+- Leta efter panelen */Händelser/*. Den finns troligtvis i nedre högra hörnet.
+- Tryck på */Lägg till händelse/*.
+- Välj datum och tid för händelsen.
+- Skriv en kort beskrivning av händelsen i textfältet. Avancerade funktioner som tabeller, ekvationer och olika typsnitt kommer inte att visas korrekt.
+- För att kalendern skall veta vilken eller vilka klass(er) som händelsen berör måste antingen *kursnamnet eller händelsebeskrivningen* innehålla namnet på klassen. Se */Problem/*-rubriken för information om hur du byter kursnamn.
+Nedan följer några exempel på händelsebeskrivningar.
+
+*En klass*
+#+BEGIN_EXAMPLE
+Fysikprov kap. 1 för TE2b.
+#+END_EXAMPLE
+*Två klasser*
+#+BEGIN_EXAMPLE
+TE3a och TE3b, opponering GY-arbete.
+#+END_EXAMPLE
+*Om kursnamnet innehåller klassnamnet (t.ex. /16SVESVE03TE3a/)*
+#+BEGIN_EXAMPLE
+Prov litteraturhistoria.
+#+END_EXAMPLE
+
+*Det kan ta ett tag innan webbsidan uppdateras, särskilt skärmen i korridoren.*
+* Redigera eller ta bort händelser
+- Från kursinfopanelen, klicka på den händelse som skall redigeras. Detta kommer att ta dig till kalendern. Alternativt kan du komma åt kalendern från menyn överst på itslearning.
+- Välj den händelse som skall redigeras eller tas bort och klicka på den knapp som motsvarar respektive handling.
+* Problem
+** Händelsepanelen finns inte på kursinfopanelen
++ Klicka på knappen med tre punkter i övre högra hörnet.
++ Välj */Lägg till innehållsblock/*.
++ Under rubriken */Samlade/*, välj */Händelser/*.
+** Händelsen färgas inte efter klassnamnet
+Kontrollera att kursnamnet eller händelsebeskrivningen innehåller klassnamnet. Klassnamnet får inte innehålla blankslag.
+*** Exempel på kursnamn där klassen/klasserna kan utläsas
+#+BEGIN_EXAMPLE
+Engelska6TE2b17
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+TE1aENGENG06
+#+END_EXAMPLE
+*** Exempel på händelsebeskrivningar där klassen/klasserna kan utläsas
+#+BEGIN_EXAMPLE
+Bärplockning för TE3b och regndans för TE1a, TE1b och TE2a.
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+Prov differentialekvationer (TE3aTE3b).
+#+END_EXAMPLE

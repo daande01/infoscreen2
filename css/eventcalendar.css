@@ -1,0 +1,88 @@
+#event-calendar {
+   /* width: 100%;*/
+    /* height: 100%; */
+    border-collapse: collapse; /*Don't put two cell border side by side*/
+    border-spacing: 0;
+   /* table-layout: fixed;*/
+}
+
+#event-calendar * {
+    margin: 0;
+    padding: 0;
+}
+
+#event-calendar .even-row, #event-calendar .odd-row{
+}
+#event-calendar .even-row {
+}
+    
+#event-calendar .odd-row {
+    background-color: #fff9f8;
+}
+
+#event-calendar .day-label-row {
+    height: 30px
+}
+
+#event-calendar .day-label-row th {
+    text-align: center;
+    border-left: 1px solid #f5c3b3;
+    border-right: 1px solid #f5c3b3;
+}
+
+
+#event-calendar td {
+}
+
+#event-calendar .day-cell{
+    vertical-align: top;
+    border: 1px solid #f5c3b3;
+    width: 500px;
+    padding: 2px;
+    height: 143px;
+}
+
+#event-calendar .week-nr-label {
+    width: 25px;
+    text-align: left;
+    border-top: 1px solid #f5c3b3;
+    border-bottom: 1px solid #f5c3b3;
+}
+
+#event-calendar .odd-row .week-nr-label{
+    background-color: #fff9f8;
+    background: linear-gradient(to left, #fff9f8, #fff9f8, #ffffff);
+}
+
+#event-calendar .even-row td {}
+#event-calendar .odd-row td {}
+
+#event-calendar .event {
+    width: 98%;
+    display:inline-block;
+    line-height: 1.2;
+    border-radius: 2px;
+    margin: 2px 2px 2px 2px;
+    border: 1px solid rgba(200,200,200,0.7);
+    min-height: 25px;
+    /* background-color: #58ffc9;*/
+}
+
+#event-calendar .event.first-event {
+    width: calc(98% - 27px);
+}
+
+#event-calendar .day-cell-background {
+    text-align: left;
+    color: #000;
+    opacity: 0.2;
+    display: inline;
+    font-size: 23px;
+    /* width: calc(calc(100% - 25px) / 5); */
+    line-height: 1.2;
+    position: static;
+}
+
+#event-calendar .today{
+    box-shadow: inset 0 0 13px #f5c3b3;
+}
